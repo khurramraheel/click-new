@@ -1,0 +1,185 @@
+import React from "react";
+import { connect } from "react-redux";
+import store from "../../store/store";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { baseUrl } from "../../shared";
+import ReactImageMagnify from 'react-image-magnify';
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
+
+
+class Product extends React.Component {
+  state = {}
+  HideDropDown = evt => {
+    {
+      store.dispatch({
+        type: "ON_HOVER",
+        name: "aaaaa"
+      });
+    }
+  };
+  addtoCart = (price, description, image) => {
+
+    if(!this.state.size){
+      toast.error("Please select a size for this item!", {
+        autoClose: 3000
+      });
+      return;
+    }
+
+    // console.log(price, description)
+    // event.preventDefault();
+    this.setState({
+      price: price,
+      description: description,
+      file: image
+    });
+    console.log(this.state);
+    debugger;
+    store.dispatch({
+      type: "Add_To_Cart",
+      payload: {
+        size:this.state.size,
+        price: price,
+        description: description,
+        file: image
+      }
+        
+    });
+
+    toast.success("Item Added To Cart!", {
+      autoClose: 3000
+    });
+
+  };
+  onSizeChange = (evt)=>{
+    this.setState({
+      size:evt.target.value
+    });
+  }
+  componentDidMount=()=>{
+
+    toast.configure();
+
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          {this.props.nimgs
+            .filter(item => {
+              return item._id == this.props.match.params.pid;
+            })
+            .map(item => {
+              return (
+                <div className="card_div">
+                  <div className="product_image_div">
+                    <ReactImageMagnify {...{
+                      smallImage: {
+                        alt: 'Wristwatch by Ted Baker London',
+                        isFluidWidth: true,
+                        src: baseUrl + '/' + item.file
+                      },
+                      largeImage: {
+                        src: baseUrl + '/' + item.file,
+                        width: 1200,
+                        height: 800
+                      }
+                    }} />
+                    {/* <img src={baseUrl + '/' + item.file} className="img_product" /> */}
+                  </div>
+
+                  <div className="product_info">
+                    <div className="product_price_desc_div">
+                      <div className="desc_div_1">{item.description}</div>
+                      <div className="price_div_1">Rs : {item.price}</div>
+                    </div>
+
+                    <div className="shoeSize_div">
+                      <div className="label_men">
+                        <label>All Sizes Avaiable</label>
+                      </div>
+                      <div>
+                        <select onChange={this.onSizeChange} className="shoesize_selectbox">
+                          <option>Select Size</option>
+                          <option>Medium</option>
+                          <option>Large</option>
+                          <option>Extra Large</option>
+                          <option>Small</option>
+                          <option>Extra Small</option>
+                          
+                        </select>
+                      </div>
+                    </div>
+                    {/* <div className="sizechart">
+                      <a className="sizeChart_link" href="#">
+                        SIZE CHART
+                      </a>
+                    </div> */}
+                    <div>
+                      <button
+                        class=" button1"
+                        onClick={() =>
+                          this.addtoCart(
+                            item.price,
+                            item.description,
+                            item.file,
+                            // this.state.size
+                          )
+                        }
+                      >
+                        ADD TO CART
+                      </button>
+                    </div>
+                  </div>
+                  <div className="about_products_info">
+                    <ul>
+                      <li className="about_product">+ Cash On Delivery</li>
+                      <li className="about_product">+ 3 Days Return Policy</li>
+                      <li className="about_product">
+                        + Flat Rate (All over Pakistan) Rs:150
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+        {/* {this.props.userData.role == "admin" && (
+          <div className="reports">
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={this.handleClickOpen}
+            >
+              Reports
+            </Button>
+          </div>
+        )} */}
+      </div>
+    );
+  }
+}
+
+let NewVM = connect(function (store) {
+  return {
+    nimgs: store.imgReducer.imgs,
+    ndropdownHover: store.imgReducer.dropdownHover,
+    ndropdownCat: store.imgReducer.dropdownCat,
+    ndropdownWomen: store.imgReducer.WomenCat,
+    ndropdownNewArrival: store.imgReducer.NewArrivalCat,
+    ndropdownKids: store.imgReducer.kidscat,
+    // nproductsinfo: store.authReducer.Productinfo,
+    userData: store.authReducer.UserSignUp.data
+  };
+})(Product);
+export default NewVM;
