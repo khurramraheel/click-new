@@ -240,6 +240,25 @@ let AI_COMMANDS = [
     }
   },
   {
+    id: 60,
+    command: "I WANT TO register",
+    onMatch: function (text, args) {
+
+      if (Object.keys(args.ctx.props.auth.UserSignUp.data).length) {
+        utilities.say("You are already logged in!");
+        return;
+      }
+
+      args.ctx.props.history.push('/signup');
+
+      utilities.say("registeration form has been opened, please tell me your username");
+
+
+      document.getElementById('name').focus();
+
+    }
+  },
+  {
     id: 7,
     command: "my username is #####",
     onMatch: function (text, args) {

@@ -11,6 +11,14 @@
   height:fit-content !important; 
 }
 
+.App-header a:hover{
+  opacity:0.8;
+}
+
+.App-header a{
+  text-decoration: none;
+}
+
 .MuiDialog-root{
   z-index:2000565400!important;
 }
