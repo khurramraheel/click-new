@@ -38,17 +38,18 @@ const authReducer = (state = initialState, action) => {
     return newState;
   } else if (action.type == "Add_To_Cart") {
     let items;
-    if (state.cartInfo.find(item => item._id === action.payload._id)) {
-      items = state.cartInfo.map(item => {
-        if (item._id === action.payload._id) {
-          ++item.quantity;
-        }
-        return item;
-      });
-      return { ...state, cartInfo: [...items] };
+
+    // if (state.cartInfo.find(item => item._id === action.payload._id)) {
+    //   items = state.cartInfo.map(item => {
+    //     if (item._id === action.payload._id) {
+    //       ++item.quantity;
+    //     }
+    //     return item;
+    //   });
+    //   return { ...state, cartInfo: [...items] };
 
      
-    }
+    // }
     action.payload.quantity = 1;
     return { ...state, cartInfo: [...state.cartInfo, action.payload] };
     // newState.inProcess = false;

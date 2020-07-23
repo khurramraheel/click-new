@@ -18,7 +18,7 @@ class Cart extends React.Component {
     evt.preventDefault();
 
 
-    if(!this.props.ncartInfo.length){
+    if (!this.props.ncartInfo.length) {
       utilities.say('please add items into your cart');
       return;
     }
@@ -59,28 +59,41 @@ class Cart extends React.Component {
               {" "}
               <h3>Your Shopping Bag</h3>{" "}
             </div>
-            {this.props.ncartInfo.map(item => {
-              return (
-                <li>
-                  <div className="cart_list_items">
-                    <div className="cart_img_div">
-                      {/* <Magnifier src={item.file} width={500} /> */}
-                      {/* <img className='cart_img' src={item.file} /> */}
-                    </div>
-                    {/* <div className='cart_price'>Price : {item.price}</div> */}
-                    <div className="cart_item_desc">
-                      Description : {item.description}
-                    </div>
-                    <div className="cart_item_desc">
-                      Unit Price : {item.price}
-                    </div>{" "}
-                    <div className="cart_item_desc">
-                      quantity : {item.quantity}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
+            <table>
+              <thead>                
+                <th>Description</th>
+                <th>Price</th>
+                <th>Size</th>
+              </thead>
+              {this.props.ncartInfo.map(item => {
+                return <tr>
+                  <td> {item.description}</td>
+                  <td>{item.price}</td>
+                  <td>{item.size}</td>
+                  <td></td>
+                </tr>
+                // return (
+                // <li>
+                //   <div className="cart_list_items">
+                //     <div className="cart_img_div">
+                //       {/* <Magnifier src={item.file} width={500} /> */}
+                //       {/* <img className='cart_img' src={item.file} /> */}
+                //     </div>
+                //     {/* <div className='cart_price'>Price : {item.price}</div> */}
+                //     <div className="cart_item_desc">
+                //       Description : {item.description}
+                //     </div>
+                //     <div className="cart_item_desc">
+                //       Unit Price : {item.price}
+                //     </div>{" "}
+                //     <div className="cart_item_desc">
+                //       Size : {item.size}
+                //     </div>
+                //   </div>
+                // </li>
+                // );
+              })}
+            </table>
           </div>
 
           <div className="cart_items_detail">
@@ -130,7 +143,7 @@ class Cart extends React.Component {
     );
   }
 }
-let NewVM = connect(function(store) {
+let NewVM = connect(function (store) {
   return {
     nimgs: store.imgReducer.imgs,
     ncartInfo: store.authReducer.cartInfo,

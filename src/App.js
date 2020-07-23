@@ -28,6 +28,8 @@ import UserChat from "./components/UserChat";
 import AdminChat from "./components/AdminChat";
 import utilities from "./utilities";
 import {baseUrl} from './shared';
+import ResetPassword from './components/resetPassword/resetPassword';
+import ForgetPassword from './components/resetPassword/forgetPassword';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -678,6 +680,10 @@ class App extends Component {
 
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={SignIn} />
+            <Route path="/forgetpassword" component={ForgetPassword} />
+            <Route path="/resetpassword/:token" component={ResetPassword} />
+            
+            
             {this.props.userData.role === "admin" && (
               <Route
                 path="/inbox"

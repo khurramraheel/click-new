@@ -11,6 +11,16 @@
   height:fit-content !important; 
 }
 
+th, td{
+  padding:0 !important;
+}
+
+td{
+  font-size:12px;
+}
+
+
+
 .App-header a:hover{
   opacity:0.8;
 }

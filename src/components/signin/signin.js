@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import store from '../../store/store';
-
+import {Link} from 'react-router-dom';
 
 window.signincomponent = {setState:()=>
   {
@@ -145,6 +145,7 @@ class SignIn extends React.Component {
             >
               Sign In
           </Button>
+          <Link to='/forgetpassword'>Forget password?</Link>
           </form>
         </Paper>
       </main>

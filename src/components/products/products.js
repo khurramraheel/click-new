@@ -29,7 +29,7 @@ class Product extends React.Component {
   };
   addtoCart = (price, description, image) => {
 
-    if(!this.state.size){
+    if (!this.state.size) {
       toast.error("Please select a size for this item!", {
         autoClose: 3000
       });
@@ -48,12 +48,12 @@ class Product extends React.Component {
     store.dispatch({
       type: "Add_To_Cart",
       payload: {
-        size:this.state.size,
+        size: this.state.size,
         price: price,
         description: description,
         file: image
       }
-        
+
     });
 
     toast.success("Item Added To Cart!", {
@@ -61,12 +61,12 @@ class Product extends React.Component {
     });
 
   };
-  onSizeChange = (evt)=>{
+  onSizeChange = (evt) => {
     this.setState({
-      size:evt.target.value
+      size: evt.target.value
     });
   }
-  componentDidMount=()=>{
+  componentDidMount = () => {
 
     toast.configure();
 
@@ -106,17 +106,17 @@ class Product extends React.Component {
 
                     <div className="shoeSize_div">
                       <div className="label_men">
-                        <label>All Sizes Avaiable</label>
+                        {/* <label>All Sizes Avaiable</label> */}
                       </div>
                       <div>
-                        <select onChange={this.onSizeChange} className="shoesize_selectbox">
+                        <select style={{ 'display': 'inline' }} onChange={this.onSizeChange} className="shoesize_selectbox">
                           <option>Select Size</option>
                           <option>Medium</option>
                           <option>Large</option>
                           <option>Extra Large</option>
                           <option>Small</option>
                           <option>Extra Small</option>
-                          
+
                         </select>
                       </div>
                     </div>
@@ -126,7 +126,12 @@ class Product extends React.Component {
                       </a>
                     </div> */}
                     <div>
-                      <button
+                      <button style={{
+                        width: "200px",
+                        position: "relative",
+                        top: "44px",
+                        left: "10px"
+                      }}
                         class=" button1"
                         onClick={() =>
                           this.addtoCart(
