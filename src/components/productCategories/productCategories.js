@@ -134,6 +134,8 @@ class ProductCategories extends React.Component {
         if (price >= 1500 && price <= 2000) result = true;
       } else if (val === "5") {
         if (price >= 2000 && price <= 2500) result = true;
+      }else if (val === "6") {
+        if (price >= 2500 && price <= 5000) result = true;
       }
     });
     return result;
@@ -199,6 +201,13 @@ class ProductCategories extends React.Component {
                 />{" "}
                 2000 to 2500
                 <br />
+                <input
+                  type="checkbox"
+                  name="price"
+                  value="6"
+                  onClick={e => this.changeFilter(e)}
+                />{" "}
+                2500 to 3500
               </div>
             </div>
           </Grid>
@@ -246,12 +255,12 @@ class ProductCategories extends React.Component {
                         {this.props.userData.role === "admin" && (
                           <DeletProduct item={item} />
                         )}
-                        <button
+                        {/* <button
                           className="cart-btn"
                           onClick={() => this.addItemToCart(item)}
                         >
                           ADD TO CARD
-                      </button>
+                      </button> */}
                       </div>
                     </div>
                   </Grid>

@@ -72,7 +72,8 @@ const styles = theme => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    right:0
   },
   inputRoot: {
     color: "inherit",

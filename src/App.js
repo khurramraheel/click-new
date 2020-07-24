@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
+import axios from 'axios';
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -27,7 +28,7 @@ import { Launcher } from "react-chat-window";
 import UserChat from "./components/UserChat";
 import AdminChat from "./components/AdminChat";
 import utilities from "./utilities";
-import {baseUrl} from './shared';
+import { baseUrl } from './shared';
 import ResetPassword from './components/resetPassword/resetPassword';
 import ForgetPassword from './components/resetPassword/forgetPassword';
 
@@ -270,7 +271,7 @@ let AI_COMMANDS = [
       if (document.getElementById('email')) {
 
         window.signincomponent.setState({
-          email:text
+          email: text
         });
 
         document.getElementById('email').value = text;
@@ -295,12 +296,12 @@ let AI_COMMANDS = [
 
         debugger;
         window.signincomponent.setState({
-          password:text
+          password: text
         })
 
         setTimeout(() => {
           document.getElementById('signINBTN').click();
-          
+
         }, 1000);
 
       }
@@ -656,7 +657,22 @@ class App extends Component {
                         return (
                           <div className="adjustedParent">
                             <>
-                              <img src={baseUrl +'/' + item.file} />
+                              <button className="arrival-delete" onClick={() => {
+
+                                axios.delete('/products/' + item._id).then((res) => {
+
+                                  if (res.data.success) {
+
+                                      store.dispatch({      
+                                          type:'ITEM_DELETED',
+                                          id:item._id
+                                      });
+                                  }
+
+                                });
+
+                              }}>DELETE</button>
+                              <img src={baseUrl + '/' + item.file} />
                               {/* <p className="legend">{item.description}</p> */}
                               <Link to="/categories">
                                 <div className="s-label">
@@ -682,8 +698,8 @@ class App extends Component {
             <Route path="/signin" component={SignIn} />
             <Route path="/forgetpassword" component={ForgetPassword} />
             <Route path="/resetpassword/:token" component={ResetPassword} />
-            
-            
+
+
             {this.props.userData.role === "admin" && (
               <Route
                 path="/inbox"

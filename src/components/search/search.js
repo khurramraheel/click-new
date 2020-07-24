@@ -31,7 +31,7 @@ class Search extends React.Component {
                     <div>
                         <span>{item.price}</span>
                     </div>
-                    <button className="cart-btn" onClick={() => this.addtoCart(item.price, item.description, item.file, item._id)}>ADD TO CARD</button>
+                    <button className="cart-btn" onClick={() => this.addtoCart(item.price, item.description, item.file, item._id)}>ADD TO CART</button>
                 </div>
             })}
 

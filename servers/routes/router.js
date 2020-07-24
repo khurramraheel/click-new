@@ -117,6 +117,7 @@ router.post("/purchase", function (req, res, next) {
   });
 });
 
+
 router.post('/updatePassword', async (req, res) => {
 
   let token = jwtSimple.decode(req.body.token, "123456");

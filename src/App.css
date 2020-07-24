@@ -628,11 +628,26 @@ margin-top:10px !important;
   top:0;
   opacity: 0.1;
 }
+
+.arrival-delete{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .mainDiv{
   display: flex;
    justify-content: center; 
    width: 100%; 
 }
+
+.sideBar input{
+display: inline;
+opacity: 1 !important;
+pointer-events: all !important;
+position: static !important;
+}
+
 .sideBar{
 height:600px;
 width: 100%;
@@ -802,7 +817,7 @@ width: 100%;
   margin-left: 2px;
 }
 .onhvr_1{
-  margin-left: 30px;
+  margin-left: 52px;
 }
 
 
