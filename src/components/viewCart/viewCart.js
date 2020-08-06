@@ -64,12 +64,16 @@ class Cart extends React.Component {
                 <th>Description</th>
                 <th>Price</th>
                 <th>Size</th>
+                <th>Waist Size</th>
+                <th>Collar Size</th>
               </thead>
               {this.props.ncartInfo.map(item => {
                 return <tr>
                   <td> {item.description}</td>
                   <td>{item.price}</td>
                   <td>{item.size}</td>
+                  <td>{item.waistSize}</td>
+                  <td>{item.neckCollarSize}</td>
                   <td></td>
                 </tr>
                 // return (

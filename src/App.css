@@ -388,11 +388,11 @@ font: 14px DIN,san-serif;
 color:  #636370;
 }
 .shoeSize_div{
-  width: 200px;
+  /* width: 200px; */
   float: left;
   border: 1px solid;
   padding: 4px;
-  margin-top: 45px;
+  margin-top: 2px;
 }
 .label_men{
   font-size: 15px;
